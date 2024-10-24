@@ -9,7 +9,8 @@ const Layout = styled.div`
   justify-content: center;
   gap: 2px;
   margin-top: 2px;
-  height: calc(100vh - 264px);
+  min-height: 90vh;
+  height: fit-content;
 `;
 
 export default function Main() {

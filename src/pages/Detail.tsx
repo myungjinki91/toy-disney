@@ -8,7 +8,8 @@ const Layout = styled.div`
   justify-content: center;
   align-items: center;
   gap: 24px;
-  height: calc(100vh - 264px);
+  min-height: 90vh;
+  height: fit-content;
 `;
 
 const Profile = styled.div`
@@ -17,6 +18,7 @@ const Profile = styled.div`
   justify-content: center;
   align-items: center;
   gap: 24px;
+  color: white;
 `;
 
 const Image = styled.img`
@@ -37,7 +39,6 @@ const Wiki = styled.div`
   border-radius: 8px;
   min-width: 300px;
   height: 50px;
-  color: white;
 `;
 
 const Name = styled.div`
@@ -51,9 +52,11 @@ const Films = styled.div`
 `;
 
 const Film = styled.div`
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 4px;
   padding: 8px;
+  background-color: white;
+  font-size: 24px;
 `;
 
 export default function Detail() {

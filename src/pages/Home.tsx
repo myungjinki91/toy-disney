@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Character from "../components/Character";
+import { useQuery } from "@tanstack/react-query";
 import { db } from "../db";
+import { useEffect, useState } from "react";
 
 const Layout = styled.div`
   display: grid;
@@ -13,19 +15,38 @@ const Layout = styled.div`
   height: fit-content;
 `;
 
+interface ICharacters {
+  id: number;
+  name: string;
+  imageUrl?: string;
+}
+
+async function getCharacter() {
+  return fetch("https://disney_api.nomadcoders.workers.dev/characters ").then(
+    (response) => response.json()
+  );
+}
+
 export default function Main() {
-  const characters = db.characters;
+  const { isLoading, data } = useQuery<ICharacters[]>([""], getCharacter);
+
   return (
     <Layout>
-      {characters.map((character, index) => {
-        return (
-          <Character
-            key={index}
-            image={character.imageUrl}
-            name={character.name}
-          />
-        );
-      })}
+      {isLoading ? (
+        <div>Loading</div>
+      ) : (
+        data
+          ?.map((value) => ({ value, sort: Math.random() }))
+          .sort((a, b) => a.sort - b.sort)
+          .map(({ value }) => value)
+          .map((character, index) => (
+            <Character
+              key={index}
+              image={character.imageUrl}
+              name={character.name}
+            />
+          ))
+      )}
     </Layout>
   );
 }

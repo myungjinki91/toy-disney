@@ -5,7 +5,7 @@ import { db } from "../db";
 const Layout = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 10px;
+  gap: 1px;
   place-items: center;
 `;
 

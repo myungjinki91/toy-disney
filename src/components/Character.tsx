@@ -15,12 +15,12 @@ const Container = styled.div`
 `;
 
 const Image = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 190px;
+  height: 190px;
   overflow: hidden;
   object-fit: fill;
   img {
-    transition: all 0.1s linear;
+    transition: all 0.2s linear;
     width: 100%;
     height: 100%;
   }

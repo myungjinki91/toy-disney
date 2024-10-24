@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
-  margin: 96px 24px;
+  margin: 82px 24px;
 `;
 
 export default function Layout({ children }: { children: React.ReactNode }) {

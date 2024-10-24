@@ -4,9 +4,9 @@ import { db } from "../db";
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1px;
-  place-items: center;
+  grid-template-columns: repeat(auto-fit, 190px);
+  gap: 2px;
+  justify-content: center;
 `;
 
 export default function Main() {

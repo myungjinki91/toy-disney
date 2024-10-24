@@ -23,6 +23,15 @@ const HeaderLogo = styled.img`
   width: 100px;
 `;
 
+const GitHub = styled.div`
+  position: absolute;
+  right: 24px;
+`;
+
+const GitHubImage = styled.img`
+  width: 50px;
+`;
+
 export default function Header() {
   return (
     <>
@@ -33,6 +42,11 @@ export default function Header() {
           </Link>
         </BackIcon>
         <HeaderLogo src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Disney_wordmark.svg/1400px-Disney_wordmark.svg.png?20171113041617" />
+        <GitHub>
+          <a href="https://www.github.com/" target="_blank">
+            <GitHubImage src="/public/github.svg" />
+          </a>
+        </GitHub>
       </Nav>
     </>
   );

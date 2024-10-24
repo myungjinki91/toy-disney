@@ -11,7 +11,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 12px;
 `;
 
 const Image = styled.div`
@@ -29,7 +28,15 @@ const Image = styled.div`
   }
 `;
 
-const Name = styled.div``;
+const Name = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373c8b;
+  width: 190px;
+  height: 32px;
+  color: white;
+`;
 
 export default function Character({ image, name }: ICharacter) {
   return (
@@ -38,7 +45,9 @@ export default function Character({ image, name }: ICharacter) {
         <Image>
           <img src={image} />
         </Image>
-        <Name>{name}</Name>
+        <Name>
+          <span>{name}</span>
+        </Name>
       </Container>
     </Link>
   );

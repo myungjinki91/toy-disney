@@ -6,6 +6,8 @@ import React from "react";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  background-image: url("https://i.pinimg.com/originals/4b/e3/53/4be353c5dfb290422be018e67f89c9db.gif");
+  background-size: contain;
 `;
 
 const Main = styled.main`

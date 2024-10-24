@@ -4,9 +4,12 @@ import { db } from "../db";
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, 190px);
-  gap: 2px;
+  grid-template-columns: repeat(auto-fill, 190px);
+  grid-template-rows: repeat(auto-fit, calc(190px + 32px));
   justify-content: center;
+  gap: 2px;
+  margin-top: 2px;
+  height: calc(100vh - 264px);
 `;
 
 export default function Main() {

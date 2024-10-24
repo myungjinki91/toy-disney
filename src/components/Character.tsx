@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface ICharacter {
+  id: number;
   name: string;
   image?: string;
 }
@@ -39,9 +39,9 @@ const Name = styled.div`
   color: white;
 `;
 
-export default function Character({ name, image }: ICharacter) {
+export default function Character({ name, image, id }: ICharacter) {
   return (
-    <Link to="characters/1">
+    <Link to={`characters/${id}`}>
       <Container>
         <Image>
           <img src={image} />

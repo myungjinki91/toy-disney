@@ -21,31 +21,28 @@ interface ICharacters {
   imageUrl?: string;
 }
 
-async function getCharacter() {
+async function getCharacters() {
   return fetch("https://disney_api.nomadcoders.workers.dev/characters ").then(
     (response) => response.json()
   );
 }
 
 export default function Main() {
-  const { isLoading, data } = useQuery<ICharacters[]>([""], getCharacter);
+  const { isLoading, data } = useQuery<ICharacters[]>([""], getCharacters);
 
   return (
     <Layout>
       {isLoading ? (
         <div>Loading</div>
       ) : (
-        data
-          ?.map((value) => ({ value, sort: Math.random() }))
-          .sort((a, b) => a.sort - b.sort)
-          .map(({ value }) => value)
-          .map((character, index) => (
-            <Character
-              key={index}
-              image={character.imageUrl}
-              name={character.name}
-            />
-          ))
+        data?.map((character) => (
+          <Character
+            key={character.id}
+            id={character.id}
+            image={character.imageUrl}
+            name={character.name}
+          />
+        ))
       )}
     </Layout>
   );

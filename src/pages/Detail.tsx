@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { db } from "../db";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const Layout = styled.div`
   display: flex;
@@ -59,22 +60,54 @@ const Film = styled.div`
   font-size: 24px;
 `;
 
+interface ICharacter {
+  id: number;
+  films: string[];
+  name: string;
+  imageUrl: string;
+  sourceUrl: string;
+}
+
+async function getCharacter(id: string) {
+  return fetch(
+    `https://disney_api.nomadcoders.workers.dev/characters/${id}`
+  ).then((response) => response.json());
+}
+
 export default function Detail() {
-  const character = db.character;
+  const { id } = useParams();
+
+  if (typeof id !== "string") {
+    return (
+      <Layout>
+        <div>Error: Invalid character ID</div>
+      </Layout>
+    );
+  }
+
+  const { isLoading, data } = useQuery<ICharacter>(["f", id], () => {
+    return getCharacter(id);
+  });
   return (
     <Layout>
-      <Profile>
-        <Image src={character.imageUrl} />
-        <Name>{character.name}</Name>
-      </Profile>
-      <Wiki>
-        <Link to={`${character.sourceUrl}`}>Go to wiki</Link>
-      </Wiki>
-      <Films>
-        {character.films.map((film) => (
-          <Film key={film}>{film}</Film>
-        ))}
-      </Films>
+      {isLoading ? (
+        <div>Loading</div>
+      ) : (
+        <>
+          <Profile>
+            <Image src={data?.imageUrl} />
+            <Name>{data?.name}</Name>
+          </Profile>
+          <Wiki>
+            <Link to={`${data?.sourceUrl}`}>Go to wiki</Link>
+          </Wiki>
+          <Films>
+            {data?.films.map((film) => (
+              <Film key={film}>{film}</Film>
+            ))}
+          </Films>
+        </>
+      )}
     </Layout>
   );
 }
